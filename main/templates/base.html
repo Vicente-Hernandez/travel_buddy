@@ -1,4 +1,28 @@
 <!DOCTYPE html>
+
+<!--
+CODING DOJO
+VERSION: FULL STACK PYTHON
+AÑO: 2021
+CURSO: 014
+PROYECTO ENMARCADO DENTRO DE LA BECA TALENTO DIGITAL
+Coordinación: Matías Bensan
+Profesor: Matías "Lagman" Bensan
+Alumnos:
+- Andrea Mendez     - Francisca Ljubetic    - Paula Aguilar
+- Nicole Araya      - Diego Jeria           - Moriak Nuñez
+- Juan Díaz         - Rodrigo Elgueta       - Anthony González
+- Rodrigo Latorre   - Patricio Fuentealba   - Rubén Cid
+- Diego Jeria       - Roberto Alfaro        - José M Mendez
+- Octavio Opazo     - Rodrigo Marquez       - Vicente Hernandez
+- otros..
+======================================================
+LA COMUNILAG DE BENSAN
+======================================================
+
+"Mira hacia atrás y siéntete orgulloso de lo que has logrado. Mira hacia adelante y crea el brillante futuro que tanto mereces..""
+-->
+
 <html lang="en">
 
 <head>
@@ -30,7 +54,9 @@
         </div>
     </nav>
     <div class="container">
-        {% block contenido %} {% endblock %}
+        {% block contenido %}
+        
+        {% endblock %}
     </div>
 
 
@@ -44,24 +70,15 @@
             "progressBar": true,
         }
 
-        { %
-            if messages %
-        } { %
-            for message in messages %
-        }
-        toastr. {
-            {
-                message.tags
-            }
-        }("{{ message }}") { % endfor %
-        } { % endif %
-        }
+        {% if messages %} 
+            {% for message in messages %}
+                toastr. {{message.tags}}("{{ message }}")
+            {% endfor %}
+        {% endif %}
 
-        { % block libreria %
-        }
+        {% block libreria %}
 
-        { % endblock %
-        }
+        {% endblock %}
     </script>
 
 </body>

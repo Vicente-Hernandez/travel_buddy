@@ -55,6 +55,7 @@ def view(request,travel_id):
     }
     return render(request, 'view.html', context)
 
+@login_required
 def add(request):
     if request.method=='GET':
         
