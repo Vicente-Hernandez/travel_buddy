@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% block titulo %}INDEX USUARIO{% endblock %} {% block contenido %}
+<h1>Bienvenid@: {{request.session.user.name}}</h1>
+<a href="/logout">SALIR DEL SISTEMA</a>
+
+<h3>Tus viajes programados</h3>
+
+<table class="table mask my-1 p-3 " style="background-color: rgba(255,255,255,0.8); ">
+    <thead>
+        <tr>
+            <th scope="col">Destino</th>
+            <th scope="col">Fecha de inicio</th>
+            <th scope="col">Fecha de termino</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"><a href="/" style="text-decoration:None">Destino</a></th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row"><a href="/" style="text-decoration:None">Destino</a></th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row"><a href="/" style="text-decoration:None">Destino</a></th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Otros usuarios quieren viajar:</h3>
+
+<table class="table mask my-1 p-3 " style="background-color: rgba(255,255,255,0.8); >
+    <thead>
+        <tr>
+            <th scope=" col ">Destino</th>
+            <th scope="col ">Fecha de inicio</th>
+            <th scope="col ">Fecha de termino</th>
+            <th scope="col ">¿Deseas unirte?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row "><a href="/ " style="text-decoration:None ">Destino</a></th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td><a href="/ " style="text-decoration:None ">Join</a></td>
+        </tr>
+        <tr>
+            <th scope="row "><a href="/ " style="text-decoration:None ">Destino</a></th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td><a href="/ " style="text-decoration:None ">Join</a></td>
+        </tr>
+        <tr>
+            <th scope="row "><a href="/ " style="text-decoration:None ">Destino</a></th>
+            <td colspan="2 ">Larry the Bird</td>
+            <td><a href="/ " style="text-decoration:None ">Join</a></td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %} {% block libreria %} {% endblock %}
