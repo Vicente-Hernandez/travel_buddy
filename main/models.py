@@ -37,7 +37,7 @@ class TravelManager(models.Manager):
         if len(postData['destination']) == "":
             errors['destination'] = "El destino está vacío";
         if len(postData['description']) == "":
-            errors['description'] = "LA descripción está vacia";
+            errors['description'] = "La descripción está vacia";
         if (postData['start_date']) < today:
             errors["start_date"] = "La fecha no es correcta"
         if (postData['end_date']) < start_date :
@@ -70,7 +70,7 @@ class User(models.Model):
 
 class Travel(models.Model):
     destination = models.CharField(max_length=250)
-    description = models.TextField()
+    description = models.CharField(max_length=500)
     start_date = models.DateField()
     end_date = models.DateField()
     creator = models.ForeignKey(User, related_name='my_trip', on_delete=models.CASCADE)

@@ -1,69 +1,86 @@
-{% extends "base.html" %} {% block titulo %}INDEX USUARIO{% endblock %} {% block contenido %}
-<h1>Bienvenid@: {{request.session.user.name}}</h1>
-<a href="/logout">SALIR DEL SISTEMA</a>
+{% extends "base.html" %} {% block titulo %} Travel Dashboard {% endblock %} {% block contenido %}
+<div class="container" style="background-image: url('https://www.universal-assistance.com/uablog/wp-content/uploads/2020/04/post-blog-viaje-juntos-1000x667.png');  background-size:cover; background-repeat:no-repeat;">
+    <h1 class="ma-5 p-4" style="color: rgb(40, 3, 82);">Welcome: <i style="color: rgb(65, 2, 117);">{{ request.session.user.name }}!</i></h1>
 
-<h3>Tus viajes programados</h3>
+    <div class="row mask my-1 p-3" style="background-color: rgba(256,256,256,0.7)" ;>
+        <h3>Your Trip Schedules</h3>
 
-<table class="table mask my-1 p-3 " style="background-color: rgba(255,255,255,0.8); ">
-    <thead>
-        <tr>
-            <th scope="col">Destino</th>
-            <th scope="col">Fecha de inicio</th>
-            <th scope="col">Fecha de termino</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Acción</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row"><a href="/" style="text-decoration:None">Destino</a></th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row"><a href="/" style="text-decoration:None">Destino</a></th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row"><a href="/" style="text-decoration:None">Destino</a></th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
-    </tbody>
-</table>
+        <table class="table table-responsive table-hover table-striped mask my-1 p-3" style="background-color: rgba(255,255,255,0.8); ">
+            <thead>
+                <tr>
+                    <th scope="col ">Description</th>
+                    <th scope="col ">Travel Start Date</th>
+                    <th scope="col ">Travel End Date</th>
+                    <th scope="col ">Plan</th>
+                    <th scope="col " colspan="2 ">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for travel in travels %}
+                <tr>
+                    <td>
+                        <a href="view/{{ travel.id }} " style="text-decoration:None; color: rgb(168,7,128);">
+                            <h5>{{ travel.destination }}</h5>
+                        </a>
+                    </td>
+                    <td>{{ travel.start_date }}</td>
+                    <td>{{ travel.end_date }}</td>
+                    <td>{{ travel.description }}</td>
+                    <td>
+                        <a class="btn btn-outline-warning " href="/abort/{{ travel.id }} ">Cancel</a>
+                        <i class="bi bi-calendar2-x "></i>
+                    </td>
+                    {% if travel.creator.id == request.session.user.id %}
+                    <td>
 
-<h3>Otros usuarios quieren viajar:</h3>
+                        <a class="btn btn-outline-danger " href="/delete/{{ travel.id }} ">Delete</a>
+                        <i class="bi bi-trash "></i>
 
-<table class="table mask my-1 p-3 " style="background-color: rgba(255,255,255,0.8); >
-    <thead>
-        <tr>
-            <th scope=" col ">Destino</th>
-            <th scope="col ">Fecha de inicio</th>
-            <th scope="col ">Fecha de termino</th>
-            <th scope="col ">¿Deseas unirte?</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row "><a href="/ " style="text-decoration:None ">Destino</a></th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td><a href="/ " style="text-decoration:None ">Join</a></td>
-        </tr>
-        <tr>
-            <th scope="row "><a href="/ " style="text-decoration:None ">Destino</a></th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td><a href="/ " style="text-decoration:None ">Join</a></td>
-        </tr>
-        <tr>
-            <th scope="row "><a href="/ " style="text-decoration:None ">Destino</a></th>
-            <td colspan="2 ">Larry the Bird</td>
-            <td><a href="/ " style="text-decoration:None ">Join</a></td>
-        </tr>
-    </tbody>
-</table>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        <div class="col-5 p-3 ">
+            <button type="button " class="btn btn-dark btn-sm">
+                <a style="color:dodgerblue; text-decoration: none; " href="/add ">Add a new adventure</a>
+            </button>
+        </div>
+    </div>
+
+    <div class="row mask my-1 p-3" style="background-color: rgba(256,256,256,0.7);">
+        <h3>Other User's Travel Plans</h3>
+
+        <table class="table table-responsive table-hover table-striped mask my-1 p-3 " style="background-color: rgba(255,255,255,0.8); ">
+            <thead>
+                <tr>
+                    <th scope=" col ">Name</th>
+                    <th scope="col ">Travel Start Date</th>
+                    <th scope="col ">Travel End Date</th>
+                    <th scope="col ">Do You Want to Join?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for other in other_travels %}
+                <tr>
+                    <td>
+                        <a href="/view/{{ other.id }} " style="text-decoration:None; color: rgb(168,7,128);">
+                            <h5>{{ other.destination }}</h5>
+                        </a>
+                    </td>
+                    <td>{{other.start_date}}</td>
+                    <td>{{other.end_date}}</td>
+                    <td>
+                        <a class="btn btn-outline-success" href="join/{{other.id}} " style="text-decoration:None ">Join</a>
+                        <i class="bi bi-person-plus-fill"></i>
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+
 {% endblock %} {% block libreria %} {% endblock %}
