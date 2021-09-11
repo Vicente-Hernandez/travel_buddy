@@ -10,7 +10,7 @@ from datetime import date
 
 @login_required
 def index(request):
-    return redirect('/home')
+    return redirect('/travels')
 
 @login_required
 def home(request):
@@ -30,14 +30,14 @@ def abort(request,travel_id):
     travel=Travel.objects.get(id=travel_id)
     travel.travellers.remove(user)
     messages.warning(request, "You aborted traveling!")
-    return redirect('/home')
+    return redirect('/travels')
 
 @login_required
 def delete(request,travel_id):
     travel=Travel.objects.get(id=travel_id)
     travel.delete()
     messages.warning(request, "You successfully eliminated the trip!")
-    return redirect('/home')
+    return redirect('/travels')
 
 @login_required
 def join(request,travel_id):
@@ -45,7 +45,7 @@ def join(request,travel_id):
     trip=Travel.objects.get(id=travel_id)
     trip.travellers.add(user)
     messages.success(request, "You successfully joined!")
-    return redirect('/home')
+    return redirect('/travels')
 
 @login_required
 def view(request,travel_id):
@@ -72,7 +72,7 @@ def add(request):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('/add')
+            return redirect('/addtrip')
         
         else:    
             destination=request.POST['destination']
@@ -92,6 +92,6 @@ def add(request):
             
             viaje.travellers.add(creator)
             
-            return redirect('/home')
+            return redirect('/travels')
 
 

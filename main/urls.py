@@ -7,12 +7,12 @@ urlpatterns = [
     path('login', auth.login),
     path('logout', auth.logout),
     
-    path('home', views.home),
+    path('travels', views.home),
     path('abort/<int:travel_id>', views.abort),
     path('delete/<int:travel_id>', views.delete),
     path('join/<int:travel_id>', views.join),
     
     path('view/<int:travel_id>', views.view),
     
-    path('add', views.add)
+    path('addtrip', views.add)
 ]

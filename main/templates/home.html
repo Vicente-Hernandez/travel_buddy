@@ -20,7 +20,7 @@
                 <tr>
                     <td>
                         <a href="view/{{ travel.id }} " style="text-decoration:None; color: rgb(168,7,128);">
-                            <h5>{{ travel.destination }}</h5>
+                            {{ travel.destination }}
                         </a>
                     </td>
                     <td>{{ travel.start_date }}</td>
@@ -30,10 +30,12 @@
                         <a class="btn btn-outline-warning " href="/abort/{{ travel.id }} ">Cancel</a>
                         <i class="bi bi-calendar2-x "></i>
                     </td>
-                    {% if travel.creator.id == request.session.user.id %}
+                    {% if travel.creator_id == request.session.user.id %}
                     <td>
+
                         <a class="btn btn-outline-danger " href="/delete/{{ travel.id }} ">Delete</a>
                         <i class="bi bi-trash "></i>
+
                     </td>
                     {% endif %}
                 </tr>
@@ -43,8 +45,8 @@
 
 
         <div class="col-5 p-3 ">
-            <button type="button " class="btn btn-dark btn-sm">
-                <a style="color:dodgerblue; text-decoration: none; " href="/add ">Add a new adventure</a>
+            <button type="button " class="btn btn-dark btn-lg ">
+                <a style="color:dodgerblue; text-decoration: none; " href="/addtrip">Add a new adventure</a>
             </button>
         </div>
     </div>
@@ -66,15 +68,12 @@
                 <tr>
                     <td>
                         <a href="/view/{{ other.id }} " style="text-decoration:None; color: rgb(168,7,128);">
-                            <h5>{{ other.destination }}</h5>
-                        </a>
+                        {{ other.destination }}
+                    </a>
                     </td>
                     <td>{{other.start_date}}</td>
                     <td>{{other.end_date}}</td>
-                    <td>
-                        <a class="btn btn-outline-success" href="join/{{other.id}} " style="text-decoration:None ">Join</a>
-                        <i class="bi bi-person-plus-fill"></i>
-                    </td>
+                    <td><a href="join/{{other.id}} " style="text-decoration:None ">Join</a></td>
                 </tr>
                 {% endfor %}
         </table>
