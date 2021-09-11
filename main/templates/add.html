@@ -1,15 +1,10 @@
-{% extends "base.html" %} 
-
-{% block titulo %}Add a new Travel{% endblock %}
-
-
-{% block contenido %}
+{% extends "base.html" %} {% block titulo %}Add a new Travel{% endblock %} {% block contenido %}
 <div class="container">
     <div class="row" style="background-image: url('https://touristear.com/wp-content/uploads/2018/06/como-planificar-un-viaje-paso-a-paso-1.jpg');  background-size:cover; background-repeat:no-repeat; height:650px">
         <div class="col-2"></div>
         <div class="col-8 mask my-5 p-3" style="background-color: rgba(255,255,255,0.6); ">
             <h1>Add a Trip</h1>
-            <form method="POST" action="/add">
+            <form method="POST" action="/addtrip">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-10">
@@ -53,7 +48,4 @@
         <div class="col-2"></div>
     </div>
 </div>
-{% endblock %}
-
-
-{% block libreria %} {% endblock %}
+{% endblock %} {% block libreria %} {% endblock %}
