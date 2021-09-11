@@ -1,11 +1,6 @@
-{% extends "base.html" %}
-
-{% block titulo %}Travel Details{% endblock %}
-
-
-{% block contenido %}
+{% extends "base.html" %} {% block titulo %}Travel Details{% endblock %} {% block contenido %}
 <div class="container">
-    <div class="row" style="background-image: url('https://as01.epimg.net/deporteyvida/imagenes/2019/02/20/portada/1550685264_115200_1550686371_sumario_normal.jpg');  background-size:cover; background-repeat:no-repeat; height:650px">
+    <div class="row" style="background-image: url('https://as01.epimg.net/deporteyvida/imagenes/2019/02/20/portada/1550685264_115200_1550686371_sumario_normal.jpg');  background-size:cover; background-repeat:no-repeat; height:900px">
         <div class="mask my-5 p-3" style="background-color: rgba(255,255,255,0.4); ">
             <h2 class="mt-4" style="color:rgb(5, 71, 21)">
                 <i class="bi bi-geo-alt"></i>
@@ -26,7 +21,7 @@
         </div>
         <div class="mask mt-1 p-3" style="background-color: rgba(255,255,255,0.4);">
             <h3 style="color:rgb(5, 12, 71)">Other Users Joining the Trip:</h3>
-            {% for user in travel.travellers.all %} {% if user.name != request.session.user.name %}
+            {% for user in travel.travellers.all %}
             <ul>
                 <hr>
                 <li>
@@ -34,11 +29,8 @@
                 </li>
                 <hr>
             </ul>
-            {% endif %} {% endfor %}
+            {% endfor %}
         </div>
     </div>
 </div>
-{% endblock %}
-
-
-{% block libreria %} {% endblock %}
+{% endblock %} {% block libreria %} {% endblock %}

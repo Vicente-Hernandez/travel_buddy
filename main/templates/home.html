@@ -32,10 +32,8 @@
                     </td>
                     {% if travel.creator.id == request.session.user.id %}
                     <td>
-
                         <a class="btn btn-outline-danger " href="/delete/{{ travel.id }} ">Delete</a>
                         <i class="bi bi-trash "></i>
-
                     </td>
                     {% endif %}
                 </tr>
